@@ -10,5 +10,10 @@
             <i-icon type="picture_fill" size="28" color="#80848f"/>
             商品管理
         </i-cell>
+
+        <i-cell title="{{item.categoryName}}" is-link url="/pages/brandList/brandList">
+            <i-icon type="label_fill" size="28" color="#80848f"/>
+            品牌管理
+        </i-cell>
     </i-cell-group>
 </i-panel>

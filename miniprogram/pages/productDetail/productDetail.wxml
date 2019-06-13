@@ -7,11 +7,31 @@
         </view>
       </picker>
     </view>
+
+    <view class="section">
+        <picker bindchange="brandChange" value="{{brandIndex}}" range="{{brandList}}" range-key="brandName">
+            <view class="picker">
+            商品品牌 <text style='padding-left: 14px'>{{brandList[brandIndex].brandName}}</text>
+            </view>
+        </picker>
+      </view>
     <i-input value="{{ name }}" title="商品名称" autofocus placeholder="请输入商品名称" bind:change="setName" type="text" maxlength="50"/>
     <i-input value="{{ sort }}" type="number" title="商品排序" placeholder="请输入商品排序(数字)" bind:change="setSort" maxlength="50"/>
-    <i-input value="{{ sort }}" type="number" title="商品售价" placeholder="请输入商品售价" bind:change="setSort" maxlength="50"/>
-    <i-input value="{{ sort }}" type="number" title="优惠价" placeholder="请输入商品优惠价（可不填）" bind:change="setSort" maxlength="50"/>
+    <i-input value="{{ salePrice }}" type="number" title="商品售价" placeholder="请输入商品售价" bind:change="setSalePrice" maxlength="50"/>
+    <i-input value="{{ discountPrice }}" type="number" title="优惠价" placeholder="请输入商品优惠价（可不填）" bind:change="setDiscountPrice" maxlength="50"/>
     <i-input value="{{ description }}" type="textarea" title="商品描述" placeholder="请输入详细商品描述(最多500字)" maxlength="500" bind:change="setDescription"/>
+    <view class='logo'>
+    品牌logo
+    </view>
+    <view class='logo flex flex-wrap'>
+        <view wx:for="{{productImage}}" class='imgIcon flex y-center x-center'>
+            <image src='{{item}}'></image>
+            <i-icon type="close" class='deleteIcon' size='18' color='#fff' bindtap='deleteIcon' data-index="{{index}}"/>
+        </view>
+        <view class='imgIcon flex y-center x-center' bindtap='chooseImage'>
+            <i-icon type="add" size='60'/>
+        </view>
+    </view>
     <i-button bind:click="handleClick" type="primary">保存</i-button>
     <i-button bind:click="deleteCategory" type="error" wx:if="{{id}}">删除</i-button>
 </i-panel>

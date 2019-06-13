@@ -1,0 +1,8 @@
+/* miniprogram/pages/brandDetail/brandDetail.wxss */
+.logo {
+    line-height:1.4;
+    font-size:14px;
+    padding:10px 15px;
+    color:#495060;
+
+}

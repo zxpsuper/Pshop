@@ -1,0 +1,21 @@
+<!--miniprogram/pages/brandDetail/brandDetail.wxml-->
+
+<i-panel title="{{title}}">
+    <i-input value="{{ name }}" title="品牌名称" autofocus placeholder="请输入品牌名称" bind:change="setName" type="text" maxlength="50"/>
+    <i-input value="{{ sort }}" type="number" title="品牌排序" placeholder="请输入品牌排序(数字)" bind:change="setSort" maxlength="50"/>
+    <i-input value="{{ description }}" type="textarea" title="品牌描述" placeholder="请输入详细品牌描述(最多500字)" maxlength="500" bind:change="setDescription"/>
+    <view class='logo'>
+    品牌logo
+    </view>
+    <view class='logo flex'>
+        <view wx:if="{{brandLogo}}" class='imgIcon flex y-center x-center'>
+            <image src='{{brandLogo}}'></image>
+        </view>
+        <view class='imgIcon flex y-center x-center' bindtap='chooseImage'>
+            <i-icon type="add" size='60'/>
+        </view>
+    </view>
+    <i-button bind:click="handleClick" type="primary">保存</i-button>
+    <i-button bind:click="deleteBrand" type="error" wx:if="{{id}}">删除</i-button>
+</i-panel>
+<i-message id="message" />

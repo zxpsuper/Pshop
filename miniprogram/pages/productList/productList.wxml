@@ -8,6 +8,13 @@
         </view>
       </picker>
       </view>
+      <view class="section">
+        <picker bindchange="brandChange" value="{{brandIndex}}" range="{{brandList}}" range-key="brandName">
+            <view class="picker">
+            商品品牌 <text style='padding-left: 14px'>{{brandList[brandIndex].brandName}}</text>
+            </view>
+        </picker>
+      </view>
       <i-input value="{{ name }}" title="商品名称" autofocus placeholder="输入名称" bind:change="setName" type="text" maxlength="50"/>
       <i-input value="{{ sort }}" type="number" title="商品价格" placeholder="输入价格" bind:change="setSort" maxlength="50"/>
       
@@ -24,15 +31,15 @@
       <i-cell title="显示商品详细信息">
           <i-switch value="{{showAllDetail}}" bind:change="onChange" slot="footer"></i-switch>
       </i-cell>
-      <i-cell title="{{item.categoryName}}" is-link url="/pages/category/category?id={{item._id}}" wx:for="{{categoryList}}" wx:key="{{item._id}}">
+      <i-cell title="{{item.productName}}" is-link url="/pages/productDetail/productDetail?id={{item._id}}" wx:for="{{productList}}" wx:key="{{item._id}}">
         <block wx:if="{{showAllDetail}}">
-          <view class='mb-20 mt-20'>
-            排序：{{item.categorySort}}
+          <view class='mt-20'>
+            售价：{{item.productSalePrice}}
           </view>
-          <view class='mb-20'>
-            描述：{{item.categoryDescription}}
+          <view class='mt-20' wx:if="{{item.productDiscountPrice}}">
+            优惠价：{{item.productDiscountPrice}}
           </view>
-          <view>
+          <view class='mt-20'>
             更新时间：{{item.updateDate}}
           </view>
         </block>

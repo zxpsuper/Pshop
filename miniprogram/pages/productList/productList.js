@@ -6,7 +6,10 @@ Page({
    */
   data: {
     categoryList: [],
+      brandList: [],
+      productList: [],
     index: 0,
+    brandIndex: 0,
     showAllDetail: false
   },
   onChange(e) {
@@ -24,6 +27,11 @@ Page({
       index: event.detail.value
     })
   },
+    brandChange(event) {
+        this.setData({
+            brandIndex: event.detail.value
+        })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -42,12 +50,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.cloud.database().collection("category").get().then(res => {
+    wx.cloud.database().collection("category").limit(10000).get().then(res => {
       console.log('diaryList', res)
+      res.data.unshift({
+          categoryName: '无' 
+      })
       this.setData({
         categoryList: res.data
       })
     })
+      wx.cloud.database().collection("brand").limit(10000).get().then(res => {
+          console.log('diaryList', res)
+          res.data.unshift({
+              brandName: '无'
+          })
+          this.setData({
+              brandList: res.data
+          })
+      })
+      wx.cloud.database().collection("product").limit(10000).get().then(res => {
+          this.setData({
+              productList: res.data
+          })
+      })
   },
 
   /**

@@ -1,0 +1,29 @@
+<!--miniprogram/pages/brandList/brandList.wxml-->
+<i-panel title="分类列表">
+  <i-button bind:click="addCategory" type="primary">添加品牌</i-button>
+  <i-cell-group>
+      <i-cell title="显示品牌详细信息">
+          <i-switch value="{{showAllDetail}}" bind:change="onChange" slot="footer"></i-switch>
+      </i-cell>
+      <i-cell title="{{item.brandName}}" is-link url="/pages/brandDetail/brandDetail?id={{item._id}}" wx:for="{{brandList}}" wx:key="{{item._id}}">
+        <block wx:if="{{showAllDetail}}">
+            <view class='flex space-between'>
+                <view>
+                
+                    <view class='mt-20'>
+                        排序：{{item.brandSort}}
+                    </view>
+                    <view class='mt-20' wx:if="{{item.brandDescription}}">
+                        描述：{{item.brandDescription}}
+                    </view>
+                    <view class="mt-20">
+                        更新时间：{{item.updateDate}}
+                    </view>
+                
+                </view>
+                <image src='{{item.brandLogo}}' class='brand-logo'></image>
+            </view>
+        </block>
+      </i-cell>
+  </i-cell-group>
+</i-panel>
