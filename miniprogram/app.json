@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/productList/productList",
+    "pages/setting/setting",
+    "pages/categoryList/categoryList",
+    "pages/index/index",
+    "pages/category/category",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/productDetail/productDetail"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#ED758D",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_hover.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "iconPath": "images/setting.png",
+        "selectedIconPath": "images/setting_hover.png",
+        "text": "设置"
+      },
+      {
+        "pagePath": "pages/addFunction/addFunction",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_hover.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

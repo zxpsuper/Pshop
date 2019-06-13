@@ -1,0 +1,41 @@
+<!--miniprogram/pages/productList/productList.wxml-->
+<i-card title="商品搜索">
+    <view slot="content">
+    <view class="section">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{categoryList}}" range-key="categoryName">
+        <view class="picker">
+          商品分类 <text style='padding-left: 14px'>{{categoryList[index].categoryName}}</text>
+        </view>
+      </picker>
+      </view>
+      <i-input value="{{ name }}" title="商品名称" autofocus placeholder="输入名称" bind:change="setName" type="text" maxlength="50"/>
+      <i-input value="{{ sort }}" type="number" title="商品价格" placeholder="输入价格" bind:change="setSort" maxlength="50"/>
+      
+     
+    </view>
+    <view slot="footer">
+       <i-button bind:click="handleClick" type="primary" size="small" inline shape="circle">搜索</i-button>
+       <i-button bind:click="addProduct" type="success" size="small" inline shape="circle">创建</i-button>
+    </view>
+</i-card>
+
+<i-panel title="商品列表">
+  <i-cell-group>
+      <i-cell title="显示商品详细信息">
+          <i-switch value="{{showAllDetail}}" bind:change="onChange" slot="footer"></i-switch>
+      </i-cell>
+      <i-cell title="{{item.categoryName}}" is-link url="/pages/category/category?id={{item._id}}" wx:for="{{categoryList}}" wx:key="{{item._id}}">
+        <block wx:if="{{showAllDetail}}">
+          <view class='mb-20 mt-20'>
+            排序：{{item.categorySort}}
+          </view>
+          <view class='mb-20'>
+            描述：{{item.categoryDescription}}
+          </view>
+          <view>
+            更新时间：{{item.updateDate}}
+          </view>
+        </block>
+      </i-cell>
+  </i-cell-group>
+</i-panel>

@@ -1,0 +1,8 @@
+/* miniprogram/pages/productDetail/productDetail.wxss */
+.picker {
+  font-size:14px;
+  line-height:1;
+  color:#1c2438;
+  padding:20px 16px 10px;
+
+}

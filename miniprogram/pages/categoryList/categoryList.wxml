@@ -1,0 +1,22 @@
+<!--miniprogram/pages/categoryList/categoryList.wxml-->
+<i-panel title="分类列表">
+  <i-button bind:click="addCategory" type="primary">添加分类</i-button>
+  <i-cell-group>
+      <i-cell title="显示分类详细信息">
+          <i-switch value="{{showAllDetail}}" bind:change="onChange" slot="footer"></i-switch>
+      </i-cell>
+      <i-cell title="{{item.categoryName}}" is-link url="/pages/category/category?id={{item._id}}" wx:for="{{categoryList}}" wx:key="{{item._id}}">
+        <block wx:if="{{showAllDetail}}">
+          <view class='mb-20 mt-20'>
+            排序：{{item.categorySort}}
+          </view>
+          <view class='mb-20'>
+            描述：{{item.categoryDescription}}
+          </view>
+          <view>
+            更新时间：{{item.updateDate}}
+          </view>
+        </block>
+      </i-cell>
+  </i-cell-group>
+</i-panel>

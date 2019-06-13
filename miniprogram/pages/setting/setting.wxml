@@ -1,0 +1,14 @@
+<!--miniprogram/pages/setting/setting.wxml-->
+<i-panel title="内容管理">
+    <i-cell-group>
+        <i-cell title="{{item.categoryName}}" is-link url="/pages/categoryList/categoryList">
+            <i-icon type="createtask_fill" size="28" color="#80848f"/>
+            分类管理
+        </i-cell>
+
+        <i-cell title="{{item.categoryName}}" is-link url="/pages/productList/productList">
+            <i-icon type="picture_fill" size="28" color="#80848f"/>
+            商品管理
+        </i-cell>
+    </i-cell-group>
+</i-panel>

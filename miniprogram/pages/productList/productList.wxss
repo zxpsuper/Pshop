@@ -1,0 +1,5 @@
+/* miniprogram/pages/productList/productList.wxss */
+.picker {
+  padding:7px 15px;
+
+}

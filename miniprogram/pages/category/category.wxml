@@ -1,0 +1,9 @@
+
+<i-panel title="{{title}}">
+    <i-input value="{{ name }}" title="分类名称" autofocus placeholder="请输入分类名称" bind:change="setName" type="text" maxlength="50"/>
+    <i-input value="{{ sort }}" type="number" title="分类排序" placeholder="请输入分类排序(数字)" bind:change="setSort" maxlength="50"/>
+    <i-input value="{{ description }}" type="textarea" title="分类描述" placeholder="请输入详细分类描述(最多50字)" maxlength="50" bind:change="setDescription"/>
+    <i-button bind:click="handleClick" type="primary">保存</i-button>
+    <i-button bind:click="deleteCategory" type="error" wx:if="{{id}}">删除</i-button>
+</i-panel>
+<i-message id="message" />

@@ -1,0 +1,17 @@
+/**app.wxss**/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+} 
+
+page {
+  background-color: #f8f8f8
+}
+.mb-20 {
+  margin-bottom: 20rpx;
+}
+.mt-20 {
+  margin-top: 20rpx;
+}

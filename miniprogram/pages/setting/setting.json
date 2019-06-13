@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "i-icon": "../../dist/icon/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-panel": "../../dist/panel/index",
+    "i-switch": "../../dist/switch/index",
+    "i-button": "../../dist/button/index",
+    "i-cell": "../../dist/cell/index"
+  }
+}
