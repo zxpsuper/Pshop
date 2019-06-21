@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "i-swipeout": "../../dist/swipeout/index",
+    "i-action-sheet": "../../dist/action-sheet/index",
+    "i-icon": "../../dist/icon/index",
+    "i-load-more": "../../dist/load-more/index"
+  },
+  "navigationBarTitleText": "我喜欢的"
+}

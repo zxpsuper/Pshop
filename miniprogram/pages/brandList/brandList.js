@@ -25,7 +25,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        
+      
     },
 
     /**
@@ -39,11 +39,22 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        wx.cloud.database().collection("brand").limit(10000).get().then(res => {
-            this.setData({
-                brandList: res.data
-            })
-        })
+      wx.cloud.callFunction({
+        name: 'brandList',
+        data: {},
+        success: res => {
+          this.setData({
+            brandList: res.result.data
+          })
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '调用失败',
+          })
+          console.error('[云函数] [sum] 调用失败：', err)
+        }
+      })
     },
 
     /**

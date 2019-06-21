@@ -16,6 +16,12 @@
         </picker>
       </view>
     <i-input value="{{ name }}" title="商品名称" autofocus placeholder="请输入商品名称" bind:change="setName" type="text" maxlength="50"/>
+    <i-cell title="商品上架">
+           <i-switch value="{{onSale}}" size="large" bind:change="changeOnSale" slot="footer">
+            <view slot="open">上架</view>
+            <view slot="close">下架</view>
+        </i-switch>
+      </i-cell>
     <i-input value="{{ sort }}" type="number" title="商品排序" placeholder="请输入商品排序(数字)" bind:change="setSort" maxlength="50"/>
     <i-input value="{{ salePrice }}" type="number" title="商品售价" placeholder="请输入商品售价" bind:change="setSalePrice" maxlength="50"/>
     <i-input value="{{ discountPrice }}" type="number" title="优惠价" placeholder="请输入商品优惠价（可不填）" bind:change="setDiscountPrice" maxlength="50"/>
@@ -24,7 +30,7 @@
     品牌logo
     </view>
     <view class='logo flex flex-wrap'>
-        <view wx:for="{{productImage}}" class='imgIcon flex y-center x-center'>
+        <view wx:for="{{productImage}}" class='imgIcon flex y-center x-center' wx:key="{{item}}">
             <image src='{{item}}'></image>
             <i-icon type="close" class='deleteIcon' size='18' color='#fff' bindtap='deleteIcon' data-index="{{index}}"/>
         </view>

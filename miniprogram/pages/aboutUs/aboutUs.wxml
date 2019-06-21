@@ -1,0 +1,13 @@
+<!--miniprogram/pages/aboutUs/aboutUs.wxml-->
+<view  style="margin-bottom: 20px"></view>
+<i-card title="Pshop" extra="关于我们" thumb="http://suporka-1254965331.cos.ap-guangzhou.myqcloud.com/wxe6b98ab31a72227e.o6zAJsx2RJPrHVFWlvHJgFVxJB5Q.4UUimtN1kiHP5847f48d9af42690616561a9a7213f79.jpg">
+    <view slot="content" style="line-height: 1.5em">
+      <view>
+      Pshop 致力于专门为顾客提供高质，价廉的护肤品和化妆品。如果您对我们有什么疑问，可以联系我们：</view>
+      <view>小皮咖： 13560482344</view>
+      <view>Aaaa娜： 1332352284</view>
+    </view>
+    <view slot="footer">感谢您的关注！！</view>
+</i-card>
+<view  style="margin-bottom: 20px"></view>
+<i-load-more tip="底线可不止一条! (●ˇ∀ˇ●)" loading="{{ false }}" i-class="mt-80"/>

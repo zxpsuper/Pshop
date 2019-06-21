@@ -1,0 +1,9 @@
+<!--miniprogram/pages/advise/advise.wxml-->
+<i-panel title="您的建议">
+    <view style="padding: 30rpx;font-size: 30rpx">
+    
+       <textarea placeholder="您填写的建议非常重要，让我们一起不断完善Pshop" auto-focus bindinput="setAdvise" style='width: 690rpx'/>
+    </view>
+    <i-button bind:click="handleClick" type="primary">提交</i-button>
+</i-panel>
+<i-message id="message" />

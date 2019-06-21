@@ -1,37 +1,37 @@
 <!--index.wxml-->
-<view class="container">
+
+
+<view class="container" wx:if="{{!userInfo.avatarUrl}}">
 
   <!-- 用户 openid -->
-  <view class="userinfo">
+  <view class="userinfo text-center">
     <button 
       open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo"
       class="userinfo-avatar"
       style="background-image: url({{avatarUrl}})"
     ></button>
-    <view>
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
-    </view>
+    <view class='mt-20'>点击头像登录Pshop</view>
   </view>
 
 
   <!-- 上传图片 -->
-  <view class="uploader">
+  <!-- <view class="uploader">
     <view class="uploader-text" bindtap="doUpload">
       <text>上传图片</text>
     </view>
     <view class="uploader-container" wx:if="{{imgUrl}}">
       <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
     </view>
-  </view>
+  </view> -->
 
 
   <!-- 操作数据库 -->
-  <view class="uploader">
+  <!-- <view class="uploader">
     <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
       <text>前端操作数据库</text>
     </navigator>
-  </view>
+  </view> -->
 
   <!-- 新建云函数 -->
   <view class="uploader">
@@ -41,3 +41,38 @@
   </view>
 
 </view>
+<block  wx:else>
+<view class='shop-name-container'>
+  <view>Pshop 商品展示</view>
+  <view>
+    <view class='label'>香港进口</view>
+    <view class='label'>正品保证</view>
+  </view>
+</view>
+
+<view class='hot-sale'>
+  <view class='hot-sale-title'>今日热卖</view>
+
+  <view class='hot-sale-container'>
+    <view class='hot-sale-item' wx:for="{{productList}}" bindtap='goProductDetail' data-id="{{item._id}}" wx:key="{{item._id}}">
+      <image src="{{item.productImage[0]}}"></image>
+      <view class='name no-wrap'>{{item.productName}}</view>
+      <view wx:if="{{item.productDiscountPrice}}" class='price'>
+        <text class='sale-price'>￥{{item.productDiscountPrice}}</text>
+        <text class='old-price'>￥{{item.productSalePrice}}</text>
+      </view>
+      <view class='price sale-price' wx:else>￥{{item.productSalePrice}}</view>
+      <view class='price flex space-between y-center'>
+        <view class='flex y-center'>
+          <i-icon type="browse_fill" style='margin-right: 4px' color='#36282b'/>{{item.view}}
+        </view>
+        <view class='flex y-center'>
+          <i-icon type="like_fill" color='red' style='margin-right: 4px'/>{{item.like}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<i-load-more tip="没有更多商品咯" loading="{{ false }}" i-class="mt-80"/>
+</block>
+<i-message id="message" />

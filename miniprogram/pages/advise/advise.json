@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-panel": "../../dist/panel/index",
+    "i-message": "../../dist/message/index",
+    "i-button": "../../dist/button/index"
+  },
+  "navigationBarTitleText": "投诉建议"
+}

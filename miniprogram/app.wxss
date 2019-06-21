@@ -15,6 +15,9 @@ page {
 .mt-20 {
   margin-top: 20rpx;
 }
+.mt-80 {
+  margin-top: 80rpx!important;
+}
 .flex {
     display: flex
 }
@@ -30,6 +33,12 @@ page {
 .space-between {
     justify-content: space-between
 }
+.space-around {
+  justify-content: space-around
+}
+.text-center {
+  text-align: center
+}
 .imgIcon {
     width: 200rpx;
     height: 200rpx;
@@ -41,4 +50,10 @@ page {
 .imgIcon image {
     width: 100%;
     height: 100%
+}
+/* 文字过多三点隐藏显示，需定宽 */
+.no-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

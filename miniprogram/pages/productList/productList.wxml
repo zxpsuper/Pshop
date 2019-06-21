@@ -16,12 +16,12 @@
         </picker>
       </view>
       <i-input value="{{ name }}" title="商品名称" autofocus placeholder="输入名称" bind:change="setName" type="text" maxlength="50"/>
-      <i-input value="{{ sort }}" type="number" title="商品价格" placeholder="输入价格" bind:change="setSort" maxlength="50"/>
+      <i-input value="{{ price }}" type="number" title="商品价格" placeholder="输入价格" bind:change="setPrice" maxlength="50"/>
       
      
     </view>
     <view slot="footer">
-       <i-button bind:click="handleClick" type="primary" size="small" inline shape="circle">搜索</i-button>
+       <i-button bind:click="searchProduct" type="primary" size="small" inline shape="circle">搜索</i-button>
        <i-button bind:click="addProduct" type="success" size="small" inline shape="circle">创建</i-button>
     </view>
 </i-card>
@@ -46,3 +46,9 @@
       </i-cell>
   </i-cell-group>
 </i-panel>
+<i-page current="{{ pageNo }}" total="{{total}}" bind:change="changePage" wx:if="{{total}}">
+    <view slot="prev">Prev</view>
+    <view slot="next">Next</view>
+</i-page>
+
+<view style='height: 20px'></view>

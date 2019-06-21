@@ -1,0 +1,36 @@
+<!--miniprogram/pages/me/me.wxml-->
+<view class="container" wx:if="{{!userInfo.avatarUrl}}">
+
+  <!-- 用户 openid -->
+  <view class="userinfo text-center">
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    ></button>
+    <view class='mt-20'>点击头像登录Pshop</view>
+  </view>
+</view>
+
+<view wx:else>
+<view class='text-center'>
+  <image src='{{userInfo.avatarUrl}}' class='avatar'></image>
+</view>
+<i-alert type="success">
+    Hello, {{userInfo.nickName}}! 您是 Pshop 商店的第 {{index}} 位开店元老级顾客，欢迎您！
+</i-alert>
+
+<i-cell-group>
+    <i-cell title="我喜欢的" is-link url="/pages/mylike/mylike">
+      <i-icon type="like_fill" slot="icon" color='#ff0000' size='20'/>
+    </i-cell>
+    <i-cell title="投诉建议" is-link url="/pages/advise/advise">
+      <i-icon type="message_fill" slot="icon" color='#00aac5' size='20'/>
+    </i-cell>
+    <i-cell title="关于我们" is-link url="/pages/aboutUs/aboutUs">
+      <i-icon type="feedback_fill" slot="icon" color='yellow' size='20'/>
+    </i-cell>
+</i-cell-group>
+<i-load-more tip="我们可是有底线的! (●ˇ∀ˇ●)" loading="{{ false }}" i-class="mt-80"/>
+</view>

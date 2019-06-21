@@ -1,23 +1,31 @@
 //index.js
 const app = getApp()
-
+import {
+  formatDate
+} from '../../util/index.js'
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    productList: []
   },
-
+  goProductDetail(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/indexProduct/indexProduct?id=' + e.currentTarget.dataset.id,
+    })
+  },
+  onShow: function() {
+    this.getProductList()
+  },
   onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
+    this.onGetOpenid()
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -29,13 +37,24 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
+              app.globalData.userInfo = res.userInfo
             }
           })
         }
       }
     })
-  },
 
+  },
+  getProductList() {
+    const db = wx.cloud.database()
+    db.collection('product').where({
+      onSale: true
+    }).get().then(res => {
+      this.setData({
+        productList: res.data
+      })
+    })
+  },
   onGetUserInfo: function(e) {
     if (!this.logged && e.detail.userInfo) {
       this.setData({
@@ -43,9 +62,50 @@ Page({
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
       })
+      this.addUser(e.detail.userInfo)
     }
   },
-
+  addUser(userInfo) {
+    console.log('userInfo', userInfo)
+    const db = wx.cloud.database()
+    console.log(this.data.openid, 'res')
+    db.collection('user').where({
+      _openid: this.data.openid
+    }).get().then(res => {
+      if (!res.data.length) {
+        db.collection('user').count().then(resCount => {
+          db.collection('user').add({
+            data: {
+              ...userInfo,
+              like: [],
+              score: 0,
+              index: resCount.total + 1,
+              updateDate: formatDate(new Date())
+            },
+            success: res => {
+              $Message({
+                content: '登录成功',
+                type: 'success'
+              });
+            },
+            fail: err => {
+              $Message({
+                content: '登录失败',
+                type: 'error'
+              });
+              console.error('[数据库] [新增记录] 失败：', err)
+            }
+          })
+        })
+      } else {
+        $Message({
+          content: '登录成功',
+          type: 'success'
+        });
+      }
+    })
+  },
+  
   onGetOpenid: function() {
     // 调用云函数
     wx.cloud.callFunction({
@@ -54,9 +114,7 @@ Page({
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
+        this.data.openid = res.result.openid
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
@@ -66,55 +124,4 @@ Page({
       }
     })
   },
-
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
 })

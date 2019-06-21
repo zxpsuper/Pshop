@@ -1,0 +1,21 @@
+<!--miniprogram/pages/indexProduct/indexProduct.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper' circular>
+  <block wx:for="{{productImage}}">
+    <swiper-item class="swiper-item">
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class='product-name'>
+{{name}}
+</view>
+
+<view class='card'>
+<view><text class='key'>售价：</text> <text class='sale-price'>￥{{discountPrice? discountPrice: salePrice}}</text></view>
+<view wx:if="{{discountPrice}}"><text class='key'>原价：</text>  <text class='old-price'>￥{{salePrice}}</text></view>
+<view><text class='key'> 描述：</text>{{description}}</view>
+</view>
+
+<i-icon type="like" class='like-icon' size='30' wx:if="{{!iflike}}" bindtap='likeProduct'/>
+<i-icon type="like_fill" color='#ff0000' class='like-icon' size='30' wx:else/>

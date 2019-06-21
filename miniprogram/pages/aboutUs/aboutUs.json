@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-card": "../../dist/card/index",
+    "i-load-more": "../../dist/load-more/index"
+  },
+  "navigationBarTitleText": "关于我们"
+}

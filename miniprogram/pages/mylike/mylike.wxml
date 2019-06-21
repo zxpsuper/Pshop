@@ -1,0 +1,30 @@
+<!--miniprogram/pages/mylike/mylike.wxml-->
+<i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2" bind:click="handleClickItem2" mask-closable="{{ false }}">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">确定吗？</view>
+        <text>删除后无法恢复哦</text>
+    </view>
+</i-action-sheet>
+
+<i-swipeout  i-class="i-swipeout-demo-item" operateWidth="{{80}}" unclosable="{{true}}" toggle="{{toggle}}" wx:for="{{likeList}}">
+    <view slot="content" class='flex' bindtap='goProductDetail' data-id="{{item._id}}">
+        <view class="i-swipeout-image">
+            <image src='{{item.productImage[0]}}'></image>
+        </view>
+        <view class="i-swipeout-des">
+            <view class="i-swipeout-des-h2 no-wrap">{{item.productName}}</view>
+            <view wx:if="{{item.productDiscountPrice}}" class='price'>
+              <text class='sale-price'>￥{{item.productDiscountPrice}}</text>
+              <text class='old-price'>￥{{item.productSalePrice}}</text>
+            </view>
+            <view class='price sale-price' wx:else>￥{{item.productSalePrice}}</view>
+            <view class="i-swipeout-des-detail no-wrap">{{item.productDescription}}</view>
+        </view>
+    </view>
+    <view slot="button" class="i-swipeout-demo-button-group flex y-center space-around" style="background:#2db7f5;">
+        <view class="i-swipeout-demo-button" style="width:60px" bindtap="actionsTap" data-index="{{index}}"><i-icon size="32" type="delete_fill"></i-icon></view>
+    </view>
+</i-swipeout>
+
+<view  style="margin-bottom: 20px"></view>
+<i-load-more tip="到底了，去喜欢更多吧(●ˇ∀ˇ●)" loading="{{ false }}" i-class="mt-80"/>
